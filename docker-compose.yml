@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  api:
+    container_name: apiapp
+    image: apiapp
+    build:
+      context: .
+      dockerfile: node.Dockerfile
+    ports:
+      - "4000:4000"
+    networks:
+      - api-network
+    volumes:
+      - ./:/var/www/
+    environment:
+      - PORT=4000
+    depends_on:
+      - mongodb
+
+  mongodb:
+    container_name: mongodb
+    image: mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - api-network
+
+networks:
+  api-network:
+    driver: bridge

@@ -1,6 +1,6 @@
 const routes = (app) => {
   app
-    .route("/contact")
+    .route("/contact11")
     .get(
       (req, res, next) => {
         //middleware
